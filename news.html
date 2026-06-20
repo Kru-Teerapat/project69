@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข่าวสารโครงการ | ระบบบริหารจัดการโครงการ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4361ee',
+                        secondary: '#3f37c9',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center gap-2">
+                        <div class="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span class="font-bold text-xl text-gray-800">EduProject</span>
+                    </div>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="index.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">หน้าหลัก</a>
+                        <a href="news.html" class="border-primary text-primary border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ข่าวสารโครงการ</a>
+                        <a href="calendar.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ปฏิทินกิจกรรม</a>
+                        <a href="documents.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ดาวน์โหลดเอกสาร</a>
+                        <a href="reports.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">รายงานผลโครงการ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <div class="mb-8 border-b border-gray-200 pb-4">
+            <h1 class="text-3xl font-bold text-gray-900">ข่าวสารประชาสัมพันธ์โครงการ</h1>
+            <p class="text-gray-500 mt-2">อัปเดตความเคลื่อนไหวและผลการดำเนินงานของโครงการต่างๆ</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- News Item 1 -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover-lift">
+                <div class="h-48 bg-gray-200 relative">
+                    <!-- Placeholder image -->
+                    <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                        <i class="fa-regular fa-image text-4xl"></i>
+                    </div>
+                    <span class="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">โครงการใหม่</span>
+                </div>
+                <div class="p-6">
+                    <p class="text-xs text-gray-500 mb-2"><i class="fa-regular fa-calendar mr-1"></i> 20 มิ.ย. 2026</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 leading-tight">เริ่มแล้ว! อบรมเชิงปฏิบัติการสร้างสื่อดิจิทัล สำหรับครูยุคใหม่</h3>
+                    <p class="text-gray-600 text-sm mb-4 line-clamp-3">โครงการอบรมการใช้เครื่องมือดิจิทัลเพื่อการเรียนการสอน ได้เริ่มดำเนินการแล้ว โดยมีคุณครูเข้าร่วมกว่า 50 ท่าน ณ ห้องคอมพิวเตอร์ 1...</p>
+                    <a href="#" class="text-primary font-medium text-sm hover:text-secondary inline-flex items-center">
+                        อ่านเพิ่มเติม <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- News Item 2 -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover-lift">
+                <div class="h-48 bg-gray-200 relative">
+                    <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                        <i class="fa-regular fa-image text-4xl"></i>
+                    </div>
+                    <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">สรุปผล</span>
+                </div>
+                <div class="p-6">
+                    <p class="text-xs text-gray-500 mb-2"><i class="fa-regular fa-calendar mr-1"></i> 15 มิ.ย. 2026</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 leading-tight">สรุปผลการดำเนินโครงการอบรมพัฒนาบุคลากร ประจำปีการศึกษา 1/2569</h3>
+                    <p class="text-gray-600 text-sm mb-4 line-clamp-3">การอบรมเป็นไปอย่างราบรื่น ผู้เข้าร่วมได้รับความรู้เรื่องการจัดการงบประมาณและสินทรัพย์ สามารถทำแบบทดสอบผ่านเกณฑ์ร้อยละ 100...</p>
+                    <a href="#" class="text-primary font-medium text-sm hover:text-secondary inline-flex items-center">
+                        อ่านเพิ่มเติม <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- News Item 3 -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover-lift">
+                <div class="h-48 bg-gray-200 relative">
+                    <div class="absolute inset-0 flex items-center justify-center text-gray-400">
+                        <i class="fa-regular fa-image text-4xl"></i>
+                    </div>
+                    <span class="absolute top-4 right-4 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">ประกาศ</span>
+                </div>
+                <div class="p-6">
+                    <p class="text-xs text-gray-500 mb-2"><i class="fa-regular fa-calendar mr-1"></i> 10 มิ.ย. 2026</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 leading-tight">เชิญชวนส่งข้อเสนอโครงการ (Proposal) รอบที่ 2</h3>
+                    <p class="text-gray-600 text-sm mb-4 line-clamp-3">เปิดรับสมัครข้อเสนอโครงการเพื่อขอรับการจัดสรรงบประมาณสนับสนุนเพิ่มเติม สามารถดาวน์โหลดแบบฟอร์มได้ที่เมนูเอกสาร...</p>
+                    <a href="#" class="text-primary font-medium text-sm hover:text-secondary inline-flex items-center">
+                        อ่านเพิ่มเติม <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 flex justify-center">
+            <button class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-6 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm">
+                โหลดข่าวสารเพิ่มเติม
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm text-gray-500">
+                &copy; 2026 ระบบบริหารจัดการโครงการ โรงเรียนครุศาสตร์. สงวนลิขสิทธิ์.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

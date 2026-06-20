@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ดาวน์โหลดเอกสาร | ระบบบริหารจัดการโครงการ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4361ee',
+                        secondary: '#3f37c9',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center gap-2">
+                        <div class="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span class="font-bold text-xl text-gray-800">EduProject</span>
+                    </div>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="index.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">หน้าหลัก</a>
+                        <a href="news.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ข่าวสารโครงการ</a>
+                        <a href="calendar.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ปฏิทินกิจกรรม</a>
+                        <a href="documents.html" class="border-primary text-primary border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ดาวน์โหลดเอกสาร</a>
+                        <a href="reports.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">รายงานผลโครงการ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <div class="mb-8 border-b border-gray-200 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">คลังเอกสารโครงการ</h1>
+                <p class="text-gray-500 mt-2">ดาวน์โหลดแบบฟอร์ม คู่มือ และเอกสารที่เกี่ยวข้อง</p>
+            </div>
+            <div class="relative w-full sm:w-64">
+                <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <input type="text" placeholder="ค้นหาเอกสาร..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <!-- Sidebar Filters -->
+            <div class="md:col-span-1">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
+                    <h3 class="font-bold text-gray-800 mb-4">หมวดหมู่เอกสาร</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="flex items-center justify-between text-primary font-medium bg-blue-50 px-3 py-2 rounded-md">
+                                <span>ทั้งหมด</span>
+                                <span class="bg-blue-100 text-primary text-xs py-0.5 px-2 rounded-full">12</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center justify-between text-gray-600 hover:bg-gray-50 px-3 py-2 rounded-md transition-colors">
+                                <span>แบบฟอร์มขออนุมัติ</span>
+                                <span class="bg-gray-100 text-gray-500 text-xs py-0.5 px-2 rounded-full">4</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center justify-between text-gray-600 hover:bg-gray-50 px-3 py-2 rounded-md transition-colors">
+                                <span>แบบฟอร์มรายงานผล</span>
+                                <span class="bg-gray-100 text-gray-500 text-xs py-0.5 px-2 rounded-full">3</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center justify-between text-gray-600 hover:bg-gray-50 px-3 py-2 rounded-md transition-colors">
+                                <span>คู่มือการใช้งาน</span>
+                                <span class="bg-gray-100 text-gray-500 text-xs py-0.5 px-2 rounded-full">5</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Documents List -->
+            <div class="md:col-span-3 space-y-4">
+                <!-- Doc 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between hover:border-primary transition-colors hover-lift">
+                    <div class="flex items-center gap-4 mb-4 sm:mb-0">
+                        <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center text-2xl flex-shrink-0">
+                            <i class="fa-solid fa-file-word"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">แบบฟอร์มขออนุมัติจัดตั้งโครงการ (แบบ ปจ.1)</h4>
+                            <p class="text-sm text-gray-500">อัปเดตเมื่อ: 10 ม.ค. 2026 • ขนาด: 45 KB</p>
+                        </div>
+                    </div>
+                    <button class="w-full sm:w-auto px-4 py-2 bg-gray-50 hover:bg-primary hover:text-white text-gray-700 rounded-lg text-sm font-medium transition-colors border border-gray-200">
+                        <i class="fa-solid fa-download mr-1"></i> ดาวน์โหลด
+                    </button>
+                </div>
+
+                <!-- Doc 2 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between hover:border-primary transition-colors hover-lift">
+                    <div class="flex items-center gap-4 mb-4 sm:mb-0">
+                        <div class="w-12 h-12 rounded-lg bg-green-50 text-green-500 flex items-center justify-center text-2xl flex-shrink-0">
+                            <i class="fa-solid fa-file-excel"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">แบบฟอร์มรายละเอียดงบประมาณ (แบบ งป.1)</h4>
+                            <p class="text-sm text-gray-500">อัปเดตเมื่อ: 10 ม.ค. 2026 • ขนาด: 120 KB</p>
+                        </div>
+                    </div>
+                    <button class="w-full sm:w-auto px-4 py-2 bg-gray-50 hover:bg-primary hover:text-white text-gray-700 rounded-lg text-sm font-medium transition-colors border border-gray-200">
+                        <i class="fa-solid fa-download mr-1"></i> ดาวน์โหลด
+                    </button>
+                </div>
+
+                <!-- Doc 3 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between hover:border-primary transition-colors hover-lift">
+                    <div class="flex items-center gap-4 mb-4 sm:mb-0">
+                        <div class="w-12 h-12 rounded-lg bg-red-50 text-red-500 flex items-center justify-center text-2xl flex-shrink-0">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">คู่มือการใช้งานระบบบริหารจัดการโครงการ V.2</h4>
+                            <p class="text-sm text-gray-500">อัปเดตเมื่อ: 15 มิ.ย. 2026 • ขนาด: 2.5 MB</p>
+                        </div>
+                    </div>
+                    <button class="w-full sm:w-auto px-4 py-2 bg-gray-50 hover:bg-primary hover:text-white text-gray-700 rounded-lg text-sm font-medium transition-colors border border-gray-200">
+                        <i class="fa-solid fa-download mr-1"></i> ดาวน์โหลด
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm text-gray-500">
+                &copy; 2026 ระบบบริหารจัดการโครงการ โรงเรียนครุศาสตร์. สงวนลิขสิทธิ์.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

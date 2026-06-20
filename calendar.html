@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ปฏิทินกิจกรรม | ระบบบริหารจัดการโครงการ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4361ee',
+                        secondary: '#3f37c9',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center gap-2">
+                        <div class="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span class="font-bold text-xl text-gray-800">EduProject</span>
+                    </div>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="index.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">หน้าหลัก</a>
+                        <a href="news.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ข่าวสารโครงการ</a>
+                        <a href="calendar.html" class="border-primary text-primary border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ปฏิทินกิจกรรม</a>
+                        <a href="documents.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ดาวน์โหลดเอกสาร</a>
+                        <a href="reports.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">รายงานผลโครงการ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <div class="mb-8 border-b border-gray-200 pb-4 flex justify-between items-end">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">ปฏิทินกิจกรรมโครงการ</h1>
+                <p class="text-gray-500 mt-2">ตารางการจัดกิจกรรมและการดำเนินการของโครงการต่างๆ</p>
+            </div>
+            <div class="flex gap-2">
+                <button class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm font-bold">
+                    มิถุนายน 2026
+                </button>
+                <button class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <!-- Mock Calendar View -->
+            <div class="grid grid-cols-7 border-b border-gray-200 bg-gray-50 text-center">
+                <div class="py-3 text-sm font-semibold text-gray-500">อาทิตย์</div>
+                <div class="py-3 text-sm font-semibold text-gray-500">จันทร์</div>
+                <div class="py-3 text-sm font-semibold text-gray-500">อังคาร</div>
+                <div class="py-3 text-sm font-semibold text-gray-500">พุธ</div>
+                <div class="py-3 text-sm font-semibold text-gray-500">พฤหัสบดี</div>
+                <div class="py-3 text-sm font-semibold text-gray-500">ศุกร์</div>
+                <div class="py-3 text-sm font-semibold text-gray-500">เสาร์</div>
+            </div>
+            
+            <!-- This is just a visual placeholder for the calendar grid -->
+            <div class="grid grid-cols-7 grid-rows-5 gap-px bg-gray-200">
+                <!-- Example of days -->
+                <div class="bg-white min-h-[100px] p-2 opacity-50"><span class="text-sm text-gray-500">31</span></div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">1</span></div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">2</span></div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">3</span></div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">4</span></div>
+                <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-sm font-medium text-gray-900">5</span>
+                    <div class="mt-1 bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded truncate cursor-pointer hover:bg-blue-200" title="อบรมเชิงปฏิบัติการสร้างสื่อดิจิทัล">อบรมสร้างสื่อดิจิทัล</div>
+                </div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">6</span></div>
+                
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">7</span></div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">8</span></div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">9</span></div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">10</span></div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">11</span></div>
+                <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-sm font-medium text-gray-900">12</span>
+                    <div class="mt-1 bg-green-100 text-green-700 text-xs px-2 py-1 rounded truncate cursor-pointer hover:bg-green-200" title="กิจกรรมเรียนรู้ร่วมชุมชน">กิจกรรมเรียนรู้ร่วมชุมชน</div>
+                </div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">13</span></div>
+
+                <!-- More weeks can go here, skipping for brevity -->
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">14</span></div>
+                <div class="bg-white min-h-[100px] p-2 bg-blue-50">
+                    <span class="text-sm font-bold text-primary">15</span>
+                    <div class="mt-1 text-xs text-gray-500">วันนี้</div>
+                </div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">16</span></div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">17</span></div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">18</span></div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">19</span></div>
+                <div class="bg-white min-h-[100px] p-2"><span class="text-sm font-medium text-gray-900">20</span></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm text-gray-500">
+                &copy; 2026 ระบบบริหารจัดการโครงการ โรงเรียนครุศาสตร์. สงวนลิขสิทธิ์.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -3,140 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบรายงานแผนงานโครงการ - โรงเรียนครุศาสตร์</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>ประชาสัมพันธ์ | ระบบบริหารจัดการโครงการ โรงเรียนครุศาสตร์</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4361ee',
+                        secondary: '#3f37c9',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="logo-icon"><i class="fa-solid fa-chart-pie"></i></div>
-                <h2>EduDashboard</h2>
-            </div>
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class="active"><a href="#"><i class="fa-solid fa-house"></i> หน้าหลัก</a></li>
-                    <li><a href="#"><i class="fa-solid fa-chart-bar"></i> สถิติโครงการ</a></li>
-                    <li><a href="#"><i class="fa-solid fa-folder-open"></i> โครงการทั้งหมด</a></li>
-                </ul>
-            </nav>
-            <div class="sidebar-footer">
-                <p>ข้อมูลอัปเดตแบบเรียลไทม์</p>
-                <div id="last-update" class="update-time"><i class="fa-solid fa-clock"></i> กำลังโหลด...</div>
-            </div>
-        </aside>
+<body class="bg-slate-50 min-h-screen flex flex-col">
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="top-header">
-                <div class="header-title">
-                    <h1>รายงานสรุปแผนงานโครงการ</h1>
-                    <p>โรงเรียนครุศาสตร์ - สำหรับผู้บริหาร</p>
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center gap-2">
+                        <div class="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span class="font-bold text-xl text-gray-800">EduProject</span>
+                    </div>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="index.html" class="border-primary text-primary border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">หน้าหลัก</a>
+                        <a href="news.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ข่าวสารโครงการ</a>
+                        <a href="calendar.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ปฏิทินกิจกรรม</a>
+                        <a href="documents.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ดาวน์โหลดเอกสาร</a>
+                        <a href="reports.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">รายงานผลโครงการ</a>
+                    </div>
                 </div>
-                <div class="header-actions">
-                    <button id="refresh-btn" class="btn btn-primary"><i class="fa-solid fa-rotate-right"></i> รีเฟรชข้อมูล</button>
+                <div class="flex items-center">
+                    <a href="admin/login.html" class="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                        <i class="fa-solid fa-right-to-bracket mr-2"></i>เข้าสู่ระบบ
+                    </a>
                 </div>
-            </header>
-
-            <!-- Loading Indicator -->
-            <div id="loading-state" class="loading-container">
-                <div class="spinner"></div>
-                <p>กำลังโหลดข้อมูลจาก Google Sheet...</p>
             </div>
+        </div>
+    </nav>
 
-            <div id="dashboard-content" class="dashboard-content hidden">
-                <!-- Summary Cards -->
-                <section class="summary-cards">
-                    <div class="card summary-card">
-                        <div class="card-icon blue"><i class="fa-solid fa-folder-tree"></i></div>
-                        <div class="card-info">
-                            <h3>จำนวนโครงการทั้งหมด</h3>
-                            <div class="card-value" id="total-projects">0</div>
-                        </div>
-                    </div>
-                    <div class="card summary-card">
-                        <div class="card-icon green"><i class="fa-solid fa-sack-dollar"></i></div>
-                        <div class="card-info">
-                            <h3>งบประมาณรวม</h3>
-                            <div class="card-value" id="total-budget">฿0</div>
-                        </div>
-                    </div>
-                    <div class="card summary-card">
-                        <div class="card-icon orange"><i class="fa-solid fa-money-bill-transfer"></i></div>
-                        <div class="card-info">
-                            <h3>เบิกจ่ายไปแล้ว</h3>
-                            <div class="card-value" id="total-used">฿0</div>
-                        </div>
-                    </div>
-                    <div class="card summary-card">
-                        <div class="card-icon purple"><i class="fa-solid fa-piggy-bank"></i></div>
-                        <div class="card-info">
-                            <h3>งบประมาณคงเหลือ</h3>
-                            <div class="card-value" id="total-remaining">฿0</div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Charts Section -->
-                <section class="charts-section">
-                    <div class="card chart-card">
-                        <div class="card-header">
-                            <h3>สถานะการดำเนินงาน</h3>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="statusChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="card chart-card">
-                        <div class="card-header">
-                            <h3>สัดส่วนงบประมาณตามกลุ่มงาน</h3>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="departmentChart"></canvas>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Data Table Section -->
-                <section class="table-section">
-                    <div class="card table-card">
-                        <div class="card-header">
-                            <h3>รายละเอียดโครงการล่าสุด</h3>
-                            <div class="table-actions">
-                                <input type="text" id="search-input" placeholder="ค้นหาโครงการ..." class="search-input">
+    <!-- Hero Section -->
+    <main class="flex-grow">
+        <div class="relative bg-white overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 pt-20 px-4 sm:px-6 lg:px-8">
+                    <main class="mt-10 mx-auto max-w-7xl sm:mt-12 md:mt-16 lg:mt-20 xl:mt-28">
+                        <div class="sm:text-center lg:text-left">
+                            <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                                <span class="block xl:inline">ระบบบริหารจัดการ</span>
+                                <span class="block text-primary">แผนงานโครงการ</span>
+                            </h1>
+                            <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                                แพลตฟอร์มส่วนกลางสำหรับติดตาม รายงานผล และจัดการแผนงานโครงการทั้งหมดของโรงเรียนครุศาสตร์ โปร่งใส ตรวจสอบได้ และมีประสิทธิภาพ
+                            </p>
+                            <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                                <div class="rounded-md shadow">
+                                    <a href="reports.html" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-secondary md:py-4 md:text-lg md:px-10">
+                                        ดูสรุปผลโครงการ
+                                    </a>
+                                </div>
+                                <div class="mt-3 sm:mt-0 sm:ml-3">
+                                    <a href="news.html" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
+                                        ข่าวสารล่าสุด
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="data-table" id="project-table">
-                                <thead>
-                                    <tr>
-                                        <th>ชื่อโครงการ</th>
-                                        <th>ผู้รับผิดชอบ</th>
-                                        <th>กลุ่มงาน</th>
-                                        <th>งบประมาณ</th>
-                                        <th>ใช้ไปแล้ว</th>
-                                        <th>คงเหลือ</th>
-                                        <th>ความคืบหน้า</th>
-                                        <th>สถานะ</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Data rows will be injected here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
+                    </main>
+                </div>
             </div>
-        </main>
-    </div>
+            <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-indigo-50 flex justify-center items-center p-10">
+                <div class="grid grid-cols-2 gap-4 w-full max-w-md">
+                    <!-- Decorate Stats -->
+                    <div class="bg-white p-6 rounded-xl shadow-md hover-lift">
+                        <div class="text-primary text-3xl mb-2"><i class="fa-solid fa-folder-open"></i></div>
+                        <div class="text-2xl font-bold text-gray-800">45+</div>
+                        <div class="text-sm text-gray-500">โครงการทั้งหมด</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md hover-lift transform translate-y-6">
+                        <div class="text-green-500 text-3xl mb-2"><i class="fa-solid fa-check-circle"></i></div>
+                        <div class="text-2xl font-bold text-gray-800">28</div>
+                        <div class="text-sm text-gray-500">ดำเนินการเสร็จสิ้น</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md hover-lift">
+                        <div class="text-orange-500 text-3xl mb-2"><i class="fa-solid fa-users"></i></div>
+                        <div class="text-2xl font-bold text-gray-800">120+</div>
+                        <div class="text-sm text-gray-500">บุคลากรที่เกี่ยวข้อง</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md hover-lift transform translate-y-6">
+                        <div class="text-purple-500 text-3xl mb-2"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="text-2xl font-bold text-gray-800">85%</div>
+                        <div class="text-sm text-gray-500">ความก้าวหน้าเฉลี่ย</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm text-gray-500">
+                &copy; 2026 ระบบบริหารจัดการโครงการ โรงเรียนครุศาสตร์. สงวนลิขสิทธิ์.
+            </p>
+        </div>
+    </footer>
 </body>
 </html>

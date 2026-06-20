@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายงานผลโครงการ | ระบบบริหารจัดการโครงการ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4361ee',
+                        secondary: '#3f37c9',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center gap-2">
+                        <div class="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span class="font-bold text-xl text-gray-800">EduProject</span>
+                    </div>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="index.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">หน้าหลัก</a>
+                        <a href="news.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ข่าวสารโครงการ</a>
+                        <a href="calendar.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ปฏิทินกิจกรรม</a>
+                        <a href="documents.html" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">ดาวน์โหลดเอกสาร</a>
+                        <a href="reports.html" class="border-primary text-primary border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium">รายงานผลโครงการ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <div class="flex justify-between items-end mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">รายงานสรุปแผนงานโครงการ</h1>
+                <p class="text-gray-500 mt-1">ข้อมูลอัปเดตแบบเรียลไทม์ (Public View)</p>
+            </div>
+            <div>
+                <button id="refresh-btn" class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> รีเฟรชข้อมูล
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="flex flex-col items-center justify-center py-20">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
+            <p class="text-gray-500">กำลังโหลดข้อมูล...</p>
+        </div>
+
+        <div id="dashboard-content" class="hidden space-y-6">
+            <!-- Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover-lift">
+                    <div class="w-14 h-14 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-folder-tree"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">จำนวนโครงการ</p>
+                        <p class="text-2xl font-bold text-gray-900" id="total-projects">0</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover-lift">
+                    <div class="w-14 h-14 rounded-full bg-green-50 text-green-600 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-sack-dollar"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">งบประมาณรวม</p>
+                        <p class="text-2xl font-bold text-gray-900" id="total-budget">฿0</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover-lift">
+                    <div class="w-14 h-14 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">เบิกจ่ายไปแล้ว</p>
+                        <p class="text-2xl font-bold text-gray-900" id="total-used">฿0</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4 hover-lift">
+                    <div class="w-14 h-14 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-piggy-bank"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">งบประมาณคงเหลือ</p>
+                        <p class="text-2xl font-bold text-gray-900" id="total-remaining">฿0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">สถานะการดำเนินงาน</h3>
+                    <div class="h-64 relative">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">สัดส่วนงบประมาณตามกลุ่มงาน</h3>
+                    <div class="h-64 relative">
+                        <canvas id="departmentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                    <h3 class="text-lg font-bold text-gray-800">รายละเอียดโครงการ</h3>
+                    <div class="relative">
+                        <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="search-input" placeholder="ค้นหาโครงการ..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm w-64">
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse" id="project-table">
+                        <thead>
+                            <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
+                                <th class="p-4 font-semibold">ชื่อโครงการ</th>
+                                <th class="p-4 font-semibold">ผู้รับผิดชอบ</th>
+                                <th class="p-4 font-semibold">กลุ่มงาน</th>
+                                <th class="p-4 font-semibold">งบประมาณ</th>
+                                <th class="p-4 font-semibold">ความคืบหน้า</th>
+                                <th class="p-4 font-semibold text-center">สถานะ</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 text-sm">
+                            <!-- Rows -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-4 border-t border-gray-100 text-xs text-gray-500 flex justify-between items-center">
+                    <span id="last-update">อัปเดตล่าสุด: กำลังโหลด...</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/reports.js"></script>
+</body>
+</html>
