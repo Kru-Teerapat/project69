@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบรายงานแผนงานโครงการ - โรงเรียนครุศาสตร์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <h2>EduDashboard</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#"><i class="fa-solid fa-house"></i> หน้าหลัก</a></li>
+                    <li><a href="#"><i class="fa-solid fa-chart-bar"></i> สถิติโครงการ</a></li>
+                    <li><a href="#"><i class="fa-solid fa-folder-open"></i> โครงการทั้งหมด</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <p>ข้อมูลอัปเดตแบบเรียลไทม์</p>
+                <div id="last-update" class="update-time"><i class="fa-solid fa-clock"></i> กำลังโหลด...</div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-title">
+                    <h1>รายงานสรุปแผนงานโครงการ</h1>
+                    <p>โรงเรียนครุศาสตร์ - สำหรับผู้บริหาร</p>
+                </div>
+                <div class="header-actions">
+                    <button id="refresh-btn" class="btn btn-primary"><i class="fa-solid fa-rotate-right"></i> รีเฟรชข้อมูล</button>
+                </div>
+            </header>
+
+            <!-- Loading Indicator -->
+            <div id="loading-state" class="loading-container">
+                <div class="spinner"></div>
+                <p>กำลังโหลดข้อมูลจาก Google Sheet...</p>
+            </div>
+
+            <div id="dashboard-content" class="dashboard-content hidden">
+                <!-- Summary Cards -->
+                <section class="summary-cards">
+                    <div class="card summary-card">
+                        <div class="card-icon blue"><i class="fa-solid fa-folder-tree"></i></div>
+                        <div class="card-info">
+                            <h3>จำนวนโครงการทั้งหมด</h3>
+                            <div class="card-value" id="total-projects">0</div>
+                        </div>
+                    </div>
+                    <div class="card summary-card">
+                        <div class="card-icon green"><i class="fa-solid fa-sack-dollar"></i></div>
+                        <div class="card-info">
+                            <h3>งบประมาณรวม</h3>
+                            <div class="card-value" id="total-budget">฿0</div>
+                        </div>
+                    </div>
+                    <div class="card summary-card">
+                        <div class="card-icon orange"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                        <div class="card-info">
+                            <h3>เบิกจ่ายไปแล้ว</h3>
+                            <div class="card-value" id="total-used">฿0</div>
+                        </div>
+                    </div>
+                    <div class="card summary-card">
+                        <div class="card-icon purple"><i class="fa-solid fa-piggy-bank"></i></div>
+                        <div class="card-info">
+                            <h3>งบประมาณคงเหลือ</h3>
+                            <div class="card-value" id="total-remaining">฿0</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Charts Section -->
+                <section class="charts-section">
+                    <div class="card chart-card">
+                        <div class="card-header">
+                            <h3>สถานะการดำเนินงาน</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card chart-card">
+                        <div class="card-header">
+                            <h3>สัดส่วนงบประมาณตามกลุ่มงาน</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="departmentChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Data Table Section -->
+                <section class="table-section">
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <h3>รายละเอียดโครงการล่าสุด</h3>
+                            <div class="table-actions">
+                                <input type="text" id="search-input" placeholder="ค้นหาโครงการ..." class="search-input">
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="project-table">
+                                <thead>
+                                    <tr>
+                                        <th>ชื่อโครงการ</th>
+                                        <th>ผู้รับผิดชอบ</th>
+                                        <th>กลุ่มงาน</th>
+                                        <th>งบประมาณ</th>
+                                        <th>ใช้ไปแล้ว</th>
+                                        <th>คงเหลือ</th>
+                                        <th>ความคืบหน้า</th>
+                                        <th>สถานะ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Data rows will be injected here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
